@@ -39,6 +39,8 @@ mix setup
 mix phx.server
 ```
 
+Application should now be running and accessible at [`localhost:4000`](http://localhost:4000) from your browser.
+
 ### Dependencies and Tools
 
 * [Visual Studio Code](https://code.visualstudio.com/)
@@ -47,30 +49,16 @@ mix phx.server
 * [Kiex](https://github.com/taylor/kiex)
 * [Kerl](https://github.com/kerl/kerl)
 
+## Production Environment
 
-## Installation
-
-1. Set up the project:
-
-    ```sh
-    mix setup
-    ```
-
-2. Fire up the Phoenix endpoint:
-
-    ```sh
-    mix phx.server
-    ```
-
-3. Visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-## App Generation
-
-This app was generated using:
-
-```sh
-mix phx.new app --live --binary-id --verbose
+* [Gigalixir](https://www.gigalixir.com/) - Platform as a Service.
+```bash
+gigalixir version
+# 1.2.0
+git push gigalixir
+# https://gigalixir.readthedocs.io/en/latest/getting-started-guide.html#deploy
 ```
+* [Supabase](https://supabase.io/) - Managed Postgres database.
 
 # License
 
