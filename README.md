@@ -60,6 +60,17 @@ git push gigalixir
 ```
 * [Supabase](https://supabase.io/) - Managed Postgres database.
 
+## Notable Environment Variables
+
+* `MIX_ENV`: [Elixir Mix environment selection](https://hexdocs.pm/mix/1.12/Mix.html#module-environments)
+* `SECRET_KEY_BASE`: generate one by calling `mix phx.gen.secret`
+* `PORT`: http server port to bind on
+* `DATABASE_URL`: [PostgreSQL Connection URI](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
+* `POOL_SIZE`: PostgreSQL connection pool size
+* `AWS_DEFAULT_REGION`: [Amazon Web Services Region](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-region) for Simple Email Service
+* `AWS_ACCESS_KEY`: [Amazon Web Services Access Key ID](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html) for Simple Email Service
+* `AWS_SECRET`: [Amazon Web Services Secret Key](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html) for Simple Email Service
+
 # License
 
 [GNU Affero General Public License, Version 3](https://www.gnu.org/licenses/agpl-3.0.html)

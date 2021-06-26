@@ -1,21 +1,26 @@
 defmodule App.Accounts.UserNotifier do
-  # For simplicity, this module simply logs messages to the terminal.
-  # You should replace it by a proper email or notification tool, such as:
-  #
-  #   * Swoosh - https://hexdocs.pm/swoosh
-  #   * Bamboo - https://hexdocs.pm/bamboo
-  #
-  defp deliver(to, body) do
+  import Swoosh.Email
+  alias App.Mailer
+
+  defp deliver(to_email, subject_line, body) do
     require Logger
-    Logger.debug(body)
-    {:ok, %{to: to, body: body}}
+    Logger.debug(subject_line, body)
+
+    new()
+    |> to(to_email)
+    |> from({"UDIA", "noreply@udia.ca"})
+    |> subject(subject_line)
+    |> text_body(body)
+    |> Mailer.deliver
+
+    {:ok, %{to: to_email, body: body}}
   end
 
   @doc """
   Deliver instructions to confirm account.
   """
   def deliver_confirmation_instructions(user, url) do
-    deliver(user.email, """
+    deliver(user.email, "Confirm Email Address", """
 
     ==============================
 
@@ -35,7 +40,7 @@ defmodule App.Accounts.UserNotifier do
   Deliver instructions to reset a user password.
   """
   def deliver_reset_password_instructions(user, url) do
-    deliver(user.email, """
+    deliver(user.email, "Reset Account Password", """
 
     ==============================
 
@@ -55,7 +60,7 @@ defmodule App.Accounts.UserNotifier do
   Deliver instructions to update a user email.
   """
   def deliver_update_email_instructions(user, url) do
-    deliver(user.email, """
+    deliver(user.email, "Update Email Address", """
 
     ==============================
 

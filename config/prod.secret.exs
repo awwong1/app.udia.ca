@@ -30,6 +30,12 @@ config :app, AppWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+config :app, App.Mailer,
+  adapter: Swoosh.Adapters.AmazonSES,
+  region: System.get_env("AWS_DEFAULT_REGION"),
+  access_key: System.get_env("AWS_ACCESS_KEY"),
+  secret: System.get_env("AWS_SECRET")
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix
