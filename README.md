@@ -64,6 +64,7 @@ git push gigalixir
 gigalixir run mix ecto.migrate
 ```
 * [Supabase](https://supabase.io/) - Managed Postgres database.
+  * Ensure that the pool mode is set to `Session` (not `Transaction` or `Statement`) otherwise runtime SQL statement errors may occur
 
 ## Notable Environment Variables
 

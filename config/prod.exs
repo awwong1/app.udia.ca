@@ -12,7 +12,8 @@ app_host = System.get_env("APP_HOST")
 # which you should run after static files are built and
 # before starting your production server.
 config :app, AppWeb.Endpoint,
-  url: [host: app_host, port: 80],
+  url: [host: app_host, scheme: "https"],
+  http: [port: {:system, "PORT"}],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: ["//#{app_host}", "//app-udia-ca.gigalixirapp.com/"]
 
