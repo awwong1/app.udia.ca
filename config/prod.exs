@@ -1,5 +1,7 @@
 use Mix.Config
 
+app_host = System.get_env("APP_HOST")
+
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
 # when generating URLs.
@@ -10,9 +12,9 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :app, AppWeb.Endpoint,
-  url: [host: "app.udia.ca", port: 80],
+  url: [host: app_host, port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  check_origin: ["//app.udia.ca", "//app-udia-ca.gigalixirapp.com/"]
+  check_origin: ["//#{app_host}", "//app-udia-ca.gigalixirapp.com/"]
 
 # Do not print debug messages in production
 config :logger, level: :info

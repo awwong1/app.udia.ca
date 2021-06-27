@@ -57,8 +57,11 @@ Application should now be running and accessible at [`localhost:4000`](http://lo
 ```bash
 gigalixir version
 # 1.2.0
+
+# Deploy app https://gigalixir.readthedocs.io/en/latest/getting-started-guide.html#deploy
 git push gigalixir
-# https://gigalixir.readthedocs.io/en/latest/getting-started-guide.html#deploy
+# Run DB migrations https://gigalixir.readthedocs.io/en/latest/database.html#how-to-run-migrations
+gigalixir run mix ecto.migrate
 ```
 * [Supabase](https://supabase.io/) - Managed Postgres database.
 
@@ -66,6 +69,7 @@ git push gigalixir
 
 * `MIX_ENV`: [Elixir Mix environment selection](https://hexdocs.pm/mix/1.12/Mix.html#module-environments)
 * `SECRET_KEY_BASE`: generate one by calling `mix phx.gen.secret`
+* `APP_HOST`: [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) of web application (e.g. "app.udia.ca")
 * `PORT`: http server port to bind on
 * `DATABASE_URL`: [PostgreSQL Connection URI](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
 * `POOL_SIZE`: PostgreSQL connection pool size
