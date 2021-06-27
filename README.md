@@ -63,8 +63,9 @@ git push gigalixir
 # Run DB migrations https://gigalixir.readthedocs.io/en/latest/database.html#how-to-run-migrations
 gigalixir run mix ecto.migrate
 ```
-* [Supabase](https://supabase.io/) - Managed Postgres database.
-  * Ensure that the pool mode is set to `Session` (not `Transaction` or `Statement`) otherwise runtime SQL statement errors may occur
+* [Supabase](https://supabase.io/) - Managed PostgreSQL database.
+  * Ensure that the [pool mode is set to `Session`](https://supabase.io/blog/2021/04/02/supabase-pgbouncer#pool-modes) (not `Transaction` or `Statement`) otherwise runtime SQL statement errors may occur
+  * Manually enable the [`citext` extension](https://www.postgresql.org/docs/9.1/citext.html) (data type for case-insensitive character strings)
 
 ## Notable Environment Variables
 
