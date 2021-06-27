@@ -26,9 +26,9 @@ defmodule AppWeb.PageLive do
   end
 
   defp search(query) do
-    if not AppWeb.Endpoint.config(:code_reloader) do
-      raise "action disabled when not in development"
-    end
+    # if not AppWeb.Endpoint.config(:code_reloader) do
+    #   raise "action disabled when not in development"
+    # end
 
     for {app, desc, vsn} <- Application.started_applications(),
         app = to_string(app),
