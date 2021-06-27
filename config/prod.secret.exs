@@ -31,10 +31,17 @@ config :app, AppWeb.Endpoint,
   secret_key_base: secret_key_base
 
 config :app, App.Mailer,
-  adapter: Swoosh.Adapters.AmazonSES,
-  region: System.get_env("AWS_DEFAULT_REGION"),
-  access_key: System.get_env("AWS_ACCESS_KEY"),
-  secret: System.get_env("AWS_SECRET")
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "email-smtp.#{System.get_env("AWS_DEFAULT_REGION")}.amazonaws.com",
+  username: {:system, "AWS_ACCESS_KEY"},
+  password: {:system, "AWS_SECRET"},
+  tls: :always,
+  port: 587
+  # https://github.com/swoosh/swoosh/issues/344
+  # adapter: Swoosh.Adapters.AmazonSES,
+  # region: {:system, "AWS_DEFAULT_REGION"},
+  # access_key: {:system, "AWS_ACCESS_KEY"},
+  # secret: {:system, "AWS_SECRET"}
 
 # ## Using releases (Elixir v1.9+)
 #

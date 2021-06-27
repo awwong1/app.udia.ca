@@ -37,6 +37,8 @@ docker run \
 mix setup
 # Start the application
 mix phx.server
+# Start the application interactively
+iex -S mix phx.server
 ```
 
 Application should now be running and accessible at [`localhost:4000`](http://localhost:4000) from your browser.

@@ -2,15 +2,12 @@ defmodule App.Accounts.UserNotifier do
   import Swoosh.Email
   alias App.Mailer
 
-  defp deliver(to_email, subject_line, body) do
-    require Logger
-    Logger.debug(subject_line, body)
-
-    new()
-    |> to(to_email)
-    |> from({"UDIA", "noreply@udia.ca"})
-    |> subject(subject_line)
-    |> text_body(body)
+  def deliver(to_email, subject_line, body) do
+    new() \
+    |> to(to_email) \
+    |> from({"UDIA", "noreply@udia.ca"}) \
+    |> subject(subject_line) \
+    |> text_body(body) \
     |> Mailer.deliver
 
     {:ok, %{to: to_email, body: body}}
@@ -20,7 +17,7 @@ defmodule App.Accounts.UserNotifier do
   Deliver instructions to confirm account.
   """
   def deliver_confirmation_instructions(user, url) do
-    deliver(user.email, "Confirm Email Address", """
+    deliver(user.email, "Confirm Email Address", "
 
     ==============================
 
@@ -33,14 +30,14 @@ defmodule App.Accounts.UserNotifier do
     If you didn't create an account with us, please ignore this.
 
     ==============================
-    """)
+    ")
   end
 
   @doc """
   Deliver instructions to reset a user password.
   """
   def deliver_reset_password_instructions(user, url) do
-    deliver(user.email, "Reset Account Password", """
+    deliver(user.email, "Reset Account Password", "
 
     ==============================
 
@@ -53,14 +50,14 @@ defmodule App.Accounts.UserNotifier do
     If you didn't request this change, please ignore this.
 
     ==============================
-    """)
+    ")
   end
 
   @doc """
   Deliver instructions to update a user email.
   """
   def deliver_update_email_instructions(user, url) do
-    deliver(user.email, "Update Email Address", """
+    deliver(user.email, "Update Email Address", "
 
     ==============================
 
@@ -73,6 +70,6 @@ defmodule App.Accounts.UserNotifier do
     If you didn't request this change, please ignore this.
 
     ==============================
-    """)
+    ")
   end
 end
