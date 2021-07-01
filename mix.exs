@@ -20,7 +20,7 @@ defmodule App.MixProject do
   def application do
     [
       mod: {App.Application, []},
-      extra_applications: [:logger, :runtime_tools, :swoosh, :gen_smtp]
+      extra_applications: [:logger, :runtime_tools, :swoosh, :gen_smtp, :os_mon]
     ]
   end
 
@@ -50,7 +50,8 @@ defmodule App.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:hackney, "~> 1.9"},
       {:swoosh, "~> 1.0"},
-      {:gen_smtp, "~> 0.13"}
+      {:gen_smtp, "~> 0.13"},
+      {:ecto_psql_extras, "~> 0.2"}
     ]
   end
 
