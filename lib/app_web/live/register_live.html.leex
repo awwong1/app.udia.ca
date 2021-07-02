@@ -1,4 +1,3 @@
-<div class="auth">
 <h1>Register</h1>
 
 <%= f = form_for @changeset,
@@ -25,5 +24,3 @@
   <%= link "Log in", to: Routes.user_session_path(@socket, :new) %> |
   <%= link "Forgot your password?", to: Routes.user_reset_password_path(@socket, :new) %>
 </p>
-
-</div>

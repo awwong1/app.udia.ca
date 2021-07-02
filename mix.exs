@@ -51,7 +51,12 @@ defmodule App.MixProject do
       {:hackney, "~> 1.9"},
       {:swoosh, "~> 1.0"},
       {:gen_smtp, "~> 0.13"},
-      {:ecto_psql_extras, "~> 0.2"}
+      {:ecto_psql_extras, "~> 0.2"},
+      {:timex, "~> 3.7.5"},
+      {:ex_cldr, "~> 2.23"},
+      {:ex_cldr_numbers, "~> 2.0"},
+      {:ex_cldr_calendars, "~> 1.15"},
+      {:ex_cldr_dates_times, "~> 2.0"}
     ]
   end
 

@@ -3,9 +3,18 @@ defmodule AppWeb.Router do
 
   import AppWeb.UserAuth
 
+  # Strange behaviour, require forces the compiler to process now
+  # https://github.com/elixir-cldr/cldr/issues/135
+  require App.Cldr
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
+    plug Cldr.Plug.SetLocale,
+      apps:    [:cldr],
+      cldr:    App.Cldr
+    plug Cldr.Plug.AcceptLanguage,
+      cldr_backend: App.Cldr
     plug :fetch_live_flash
     plug :put_root_layout, {AppWeb.LayoutView, :root}
     plug :protect_from_forgery
@@ -15,6 +24,7 @@ defmodule AppWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
   end
 
   scope "/", AppWeb do
@@ -50,7 +60,6 @@ defmodule AppWeb.Router do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
     live "/users/register", RegisterLive, :new, as: :user_registration
-    # get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
     get "/users/log_in", UserSessionController, :new
     post "/users/log_in", UserSessionController, :create
@@ -75,5 +84,11 @@ defmodule AppWeb.Router do
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
+  end
+
+  scope "/api", AppWeb do
+    pipe_through [:api]
+
+    post "/session/set-timezone", SessionSetTimezoneController, :set
   end
 end

@@ -27,6 +27,13 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Common Locale Data Repository (CLDR)
+# https://github.com/elixir-cldr/cldr
+config :ex_cldr,
+  default_locale: "en",
+  default_backend: App.Cldr,
+  json_library: Jason
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

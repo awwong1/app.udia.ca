@@ -13,15 +13,18 @@ import "../css/app.scss"
 //     import socket from "./socket"
 //
 import "phoenix_html"
-import {Socket} from "phoenix"
+import { Socket } from "phoenix"
 import topbar from "topbar"
-import {LiveSocket} from "phoenix_live_view"
+import { LiveSocket } from "phoenix_live_view"
 
-let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let params = {
+  _csrf_token: document.querySelector("meta[name='csrf-token']").getAttribute("content"),
+  timezone: - (new Date().getTimezoneOffset() / 60)
+};
+let liveSocket = new LiveSocket("/live", Socket, { params });
 
 // Show progress bar on live navigation and form submits
-topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
+topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" })
 window.addEventListener("phx:page-loading-start", info => topbar.show())
 window.addEventListener("phx:page-loading-stop", info => topbar.hide())
 
@@ -34,3 +37,27 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+function sendTimezoneToServer() {
+  const timezone = - (new Date().getTimezoneOffset() / 60);
+  let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
+
+  if (typeof window.localStorage !== 'undefined') {
+    try {
+      // if we sent the timezone already or the timezone changed since last time we sent
+      if (!localStorage["timezone"] || localStorage["timezone"].toString() != timezone.toString()) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/api/session/set-timezone', true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("x-csrf-token", csrfToken);
+        xhr.onreadystatechange = function () {
+          if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            localStorage['timezone'] = timezone.toString();
+          }
+        };
+        xhr.send(`{"timezone": ${timezone}}`);
+      }
+    } catch (e) { }
+  }
+}
+
+sendTimezoneToServer()
