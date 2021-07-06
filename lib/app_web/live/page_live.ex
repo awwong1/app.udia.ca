@@ -2,10 +2,8 @@ defmodule AppWeb.PageLive do
   use AppWeb, :live_view
 
   def mount(_params, session, socket) do
-    socket =
-      socket
-      |> assign(refresh: 1, time: Timex.now())
-      |> assign_timezone(session)
+    socket = assign_timezone(socket, session)
+    socket = assign(socket, refresh: 1, time: Timex.now(socket.assigns.timezone))
 
     if connected?(socket), do: schedule_refresh(socket)
     {:ok, socket}
@@ -16,17 +14,17 @@ defmodule AppWeb.PageLive do
       timezone =
         case Phoenix.LiveView.get_connect_params(socket) do
           %{"timezone" => timezone} -> timezone
-          _ -> session["timezone"] || 0
+          _ -> session["timezone"] || "Etc/UTC"
         end
-
       assign(socket, timezone: timezone)
     else
-      assign(socket, timezone: session["timezone"] || 0)
+      assign(socket, timezone: session["timezone"] || "Etc/UTC")
     end
   end
 
   def handle_info(:tick, socket) do
-    socket = assign(socket, time: Timex.now())
+    timezone = socket.assigns.timezone
+    socket = assign(socket, time: Timex.now(timezone))
     schedule_refresh(socket)
     {:noreply, socket}
   end
@@ -35,23 +33,16 @@ defmodule AppWeb.PageLive do
     Process.send_after(self(), :tick, socket.assigns.refresh * 1000)
   end
 
-  def to_datestring(date, _locale, _timezone) when date == nil or date == "" do
-    ""
-  end
-
-  def to_datestring(date, locale, timezone) when is_binary(date) do
-    {:ok, parsed_date, _} = DateTime.from_iso8601(date)
-
-    {:ok, str} =
-      App.Cldr.DateTime.to_string(parsed_date |> Timex.shift(hours: timezone), locale: locale)
-
+  def to_datestring(date, locale) do
+    {:ok, str} = App.Cldr.DateTime.to_string(date, locale: locale, format: :long)
     str
   end
 
-  @spec to_datestring(DateTime.t() | String.t(), String.t(), integer()) :: String.t()
-  def to_datestring(date, locale, timezone) do
-    {:ok, str} = App.Cldr.DateTime.to_string(date |> Timex.shift(hours: timezone), locale: locale)
-
-    str
+  def render(assigns) do
+    ~L"""
+    <section class="time">
+      <h1><%= to_datestring(@time, "en") %></h1>
+    </section>
+    """
   end
 end
