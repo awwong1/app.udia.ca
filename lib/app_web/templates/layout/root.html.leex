@@ -21,7 +21,7 @@
           </ul>
           <%= render "_user_menu.html", assigns %>
         </nav>
-        <a href="<%= Routes.page_path(@conn, :index) %>">
+        <a href="<%= Routes.home_path(@conn, :index) %>">
           <object id="logo" aria-label="UDIA Logo" type="image/svg+xml" data="<%= Routes.static_path(@conn, "/images/logo.svg") %>">
             <span>UDIA</span>
           </object>

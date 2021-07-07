@@ -2,6 +2,7 @@ defmodule AppWeb.Router do
   use AppWeb, :router
 
   import AppWeb.UserAuth
+  import AppWeb.IpSession
 
   # Strange behaviour, require forces the compiler to process now
   # https://github.com/elixir-cldr/cldr/issues/135
@@ -10,11 +11,9 @@ defmodule AppWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug Cldr.Plug.SetLocale,
-      apps:    [:cldr],
-      cldr:    App.Cldr
-    plug Cldr.Plug.AcceptLanguage,
-      cldr_backend: App.Cldr
+    plug :assign_remote_ip
+    plug Cldr.Plug.SetLocale, apps: [:cldr], cldr: App.Cldr
+    plug Cldr.Plug.AcceptLanguage, cldr_backend: App.Cldr
     plug :fetch_live_flash
     plug :put_root_layout, {AppWeb.LayoutView, :root}
     plug :protect_from_forgery
@@ -25,12 +24,14 @@ defmodule AppWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
     plug :fetch_session
+    plug :assign_remote_ip
   end
 
   scope "/", AppWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    # live "/", PageLive, :index
+    get "/", HomeController, :index
   end
 
   # Other scopes may use custom stacks.

@@ -45,10 +45,8 @@ defmodule AppWeb.UserRegistrationControllerTest do
           "user" => %{"email" => "with spaces", "password" => "too short"}
         })
 
-      response = html_response(conn, 200)
-      assert response =~ "<h1>Register</h1>"
-      assert response =~ "must have the @ sign and no spaces"
-      assert response =~ "should be at least 12 character"
+      response = html_response(conn, 302)
+      assert response =~ Routes.user_registration_path(conn, :new)
     end
   end
 end

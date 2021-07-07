@@ -1,0 +1,2 @@
+<%= live_render(@conn, AppWeb.PageLive) %>
+<h2><%= @remote_ip |> Tuple.to_list |> Enum.join(".") %></h2>
