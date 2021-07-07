@@ -3,12 +3,12 @@ defmodule App.Accounts.UserNotifier do
   alias App.Mailer
 
   def deliver(to_email, subject_line, body) do
-    new() \
-    |> to(to_email) \
-    |> from({"UDIA", "noreply@udia.ca"}) \
-    |> subject(subject_line) \
-    |> text_body(body) \
-    |> Mailer.deliver
+    new()
+    |> to(to_email)
+    |> from({"UDIA", "noreply@udia.ca"})
+    |> subject(subject_line)
+    |> text_body(body)
+    |> Mailer.deliver()
 
     {:ok, %{to: to_email, body: body}}
   end

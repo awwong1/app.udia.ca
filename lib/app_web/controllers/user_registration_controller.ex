@@ -2,7 +2,6 @@ defmodule AppWeb.UserRegistrationController do
   use AppWeb, :controller
 
   alias App.Accounts
-  alias App.Accounts.User
   alias AppWeb.UserAuth
 
   def create(conn, %{"user" => user_params}) do

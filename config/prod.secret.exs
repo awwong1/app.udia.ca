@@ -37,11 +37,12 @@ config :app, App.Mailer,
   password: {:system, "AWS_SECRET"},
   tls: :always,
   port: 587
-  # https://github.com/swoosh/swoosh/issues/344
-  # adapter: Swoosh.Adapters.AmazonSES,
-  # region: {:system, "AWS_DEFAULT_REGION"},
-  # access_key: {:system, "AWS_ACCESS_KEY"},
-  # secret: {:system, "AWS_SECRET"}
+
+# https://github.com/swoosh/swoosh/issues/344
+# adapter: Swoosh.Adapters.AmazonSES,
+# region: {:system, "AWS_DEFAULT_REGION"},
+# access_key: {:system, "AWS_ACCESS_KEY"},
+# secret: {:system, "AWS_SECRET"}
 
 # ## Using releases (Elixir v1.9+)
 #

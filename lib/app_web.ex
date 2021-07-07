@@ -46,6 +46,7 @@ defmodule AppWeb do
     quote do
       use Phoenix.LiveView,
         layout: {AppWeb.LayoutView, "live.html"}
+
       import AppWeb.LiveHelpers
 
       unquote(view_helpers())

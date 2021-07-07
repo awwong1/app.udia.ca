@@ -24,5 +24,4 @@ config :app, AppWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-config :app, App.Mailer,
-  adapter: Swoosh.Adapters.Local
+config :app, App.Mailer, adapter: Swoosh.Adapters.Local

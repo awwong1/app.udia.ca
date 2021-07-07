@@ -4,15 +4,15 @@ defmodule AppWeb.PageLive do
   def mount(_params, session, socket) do
     socket =
       socket
+      |> assign_locale(session)
       |> assign_timezone(session)
       |> assign_remote_ip(session)
+
     socket = assign(socket, refresh: 1, time: Timex.now(socket.assigns.timezone))
 
     if connected?(socket), do: schedule_refresh(socket)
     {:ok, socket}
   end
-
-
 
   def handle_info(:tick, socket) do
     timezone = socket.assigns.timezone
@@ -33,7 +33,7 @@ defmodule AppWeb.PageLive do
   def render(assigns) do
     ~L"""
     <section class="time">
-      <h1><%= to_datestring(@time, "en") %></h1>
+      <h1><%= to_datestring(@time, @locale) %></h1>
     </section>
     """
   end

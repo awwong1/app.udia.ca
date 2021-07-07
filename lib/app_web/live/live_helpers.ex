@@ -12,6 +12,14 @@ defmodule AppWeb.LiveHelpers do
     )
   end
 
+  def assign_locale(socket, session) do
+    assign_new(
+      socket,
+      :locale,
+      fn -> session["locale"] end
+    )
+  end
+
   def assign_timezone(socket, session) do
     if Phoenix.LiveView.connected?(socket) do
       timezone =
@@ -19,6 +27,7 @@ defmodule AppWeb.LiveHelpers do
           %{"timezone" => timezone} -> timezone
           _ -> session["timezone"] || "Etc/UTC"
         end
+
       assign(socket, timezone: timezone)
     else
       assign(socket, timezone: session["timezone"] || "Etc/UTC")
