@@ -1,0 +1,5 @@
+# https://github.com/gjaldon/heroku-buildpack-phoenix-static#compile
+cd $phoenix_dir
+npm --prefix ./assets install
+npm --prefix ./assets run deploy
+mix "${phoenix_ex}.digest"
