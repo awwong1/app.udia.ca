@@ -22,10 +22,12 @@ config :app, AppWeb.Endpoint,
   check_origin: false,
   watchers: [
     node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-stdin",
+      "node_modules/.bin/parcel",
+      "watch",
+      "--no-hmr",
+      "--dist-dir",
+      "../priv/static",
+      "js/app.js",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
@@ -58,7 +60,7 @@ config :app, AppWeb.Endpoint,
 config :app, AppWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg|ttf|woff|woff2)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/app_web/(live|views)/.*(ex)$",
       ~r"lib/app_web/templates/.*(eex)$"

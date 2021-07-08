@@ -15,6 +15,7 @@ defmodule AppWeb.Router do
     plug :assign_remote_ip
     plug Cldr.Plug.AcceptLanguage, cldr_backend: App.Cldr
     plug Cldr.Plug.SetLocale, apps: [:cldr, :gettext], cldr: App.Cldr, gettext: AppWeb.Gettext
+    plug :assign_cldr_locale
     plug :fetch_live_flash
     plug :put_root_layout, {AppWeb.LayoutView, :root}
     plug :protect_from_forgery

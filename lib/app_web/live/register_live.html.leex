@@ -7,7 +7,7 @@
     phx_trigger_action: @trigger_submit %>
 
   <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
+  <%= email_input f, :email, required: true, autocomplete: "off", autofocus: true %>
   <%= error_tag f, :email %>
 
   <%= label f, :password %>
