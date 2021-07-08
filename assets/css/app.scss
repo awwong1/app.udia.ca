@@ -67,11 +67,21 @@ body {
     font-weight: 400;
     line-height: 1.45;
     font-variant-numeric: oldstyle-nums;
-    display: grid;
-    grid-template-rows: min-content auto min-content;
-    grid-template-areas: "header" "main" "footer";
     min-height: 100vh;
     max-width: 100vw;
+    min-width: 300px;
+}
+div#wrapper {
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    grid-auto-flow: dense;
+    min-height: 100vh;
+    max-width: 100vw;
+    min-width: 300px;
     place-items: stretch;
     margin: 0 0.5em;
 
@@ -105,7 +115,6 @@ body {
     label,
     footer {
         font-family: "Raleway", sans-serif;
-        margin-top: 0.5rem;
     }
 }
 
@@ -143,6 +152,7 @@ main[role=main].container {
 form {
     display: flex;
     flex-direction: column;
+    min-width: 20em;
     label {
         font-weight: 600;
     }

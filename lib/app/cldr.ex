@@ -7,7 +7,8 @@ defmodule App.Cldr do
   to functions on this module.
   """
   use Cldr,
-    locales: ~w(en fr zh th),
+    # locales: ~w(en fr zh th),
+    locales: ~w(en),
     gettext: AppWeb.Gettext,
     providers: [Cldr.Number, Cldr.Calendar, Cldr.DateTime]
 end

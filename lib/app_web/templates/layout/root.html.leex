@@ -11,26 +11,28 @@
   </head>
   <body>
     <script>true;// FOUC https://bugzilla.mozilla.org/show_bug.cgi?id=1404468</script>
-    <header id="header">
-      <section class="container">
-        <a id="logo-link" href="<%= Routes.home_path(@conn, :index) %>">
-          <object id="logo" class="udia-logo" aria-label="UDIA Logo" type="image/svg+xml" data="<%= Routes.static_path(@conn, "/images/logo.svg") %>">
-            <span>UDIA</span>
-          </object>
-        </a>
-        <nav role="navigation">
-          <ul>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-            <%= render "_user_menu.html", assigns %>
-          </ul>
-        </nav>
-      </section>
-    </header>
-    <%= @inner_content %>
-    <footer>
-    UDIA
-    </footer>
+    <div id="wrapper">
+      <header id="header">
+        <section class="container">
+          <a id="logo-link" href="<%= Routes.home_path(@conn, :index) %>">
+            <object id="logo" class="udia-logo" aria-label="UDIA" type="image/svg+xml" data="<%= Routes.static_path(@conn, "/images/logo.svg") %>">
+              <img src="<%= Routes.static_path(@conn, "/images/logo-128x128.png") %>" alt="UDIA"> <!-- no SVG support -->
+            </object>
+          </a>
+          <nav role="navigation">
+            <ul>
+              <%= if @current_user do %>
+                <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+              <% end %>
+              <%= render "_user_menu.html", assigns %>
+            </ul>
+          </nav>
+        </section>
+      </header>
+      <%= @inner_content %>
+      <footer>
+      UDIA
+      </footer>
+    </div>
   </body>
 </html>
