@@ -95,6 +95,9 @@ div#wrapper {
         display: flex;
         flex-direction: column;
     }
+    >main[role=main] {
+        background: rgba(255, 255, 255, 0.50);
+    }
     > footer {
         margin-bottom: 0.5em;
         grid-area: footer;
@@ -173,4 +176,9 @@ button {
     text-align: center;
     width: 100%;
     cursor: pointer;
+}
+
+canvas#canvas {
+    position: absolute;
+    z-index: -1;
 }

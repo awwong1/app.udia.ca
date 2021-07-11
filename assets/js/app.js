@@ -9,13 +9,14 @@ import "phoenix_html"
 import { Socket } from "phoenix"
 // import topbar from "topbar"
 import { LiveSocket } from "phoenix_live_view"
+import { beginScene } from "./scene"
 
-function sendCoordinatedUniversalTimeOffset(csrfToken, {utcOffset, timezone}) {
+function sendCoordinatedUniversalTimeOffset(csrfToken, { utcOffset, timezone }) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", '/api/session/set-timezone', true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("x-csrf-token", csrfToken);
-  const payload = JSON.stringify({utcOffset, timezone})
+  const payload = JSON.stringify({ utcOffset, timezone })
   xhr.send(payload);
 }
 
@@ -25,7 +26,7 @@ function main() {
   const utcOffset = -(new Date().getTimezoneOffset() / 60);
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  sendCoordinatedUniversalTimeOffset(csrfToken, {utcOffset, timezone})
+  sendCoordinatedUniversalTimeOffset(csrfToken, { utcOffset, timezone })
 
   const params = { _csrf_token: csrfToken, utcOffset, timezone };
   const liveSocket = new LiveSocket("/live", Socket, { params });
@@ -43,6 +44,8 @@ function main() {
   // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
   // >> liveSocket.disableLatencySim()
   window.liveSocket = liveSocket
+
+  beginScene()
 }
 
 if (document.readyState === "complete") {
