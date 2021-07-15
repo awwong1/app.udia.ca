@@ -60,6 +60,14 @@ $base-color: #663399;
 }
 
 /**
+ * ==== THREEJS GRAPHICS ====
+ */
+canvas#canvas {
+    position: absolute;
+    z-index: -1;
+}
+
+/**
  * ==== DEFAULT LAYOUT & FONT FAMILY ====
  */
 body {
@@ -71,6 +79,7 @@ body {
     max-width: 100vw;
     min-width: 300px;
 }
+
 div#wrapper {
     display: grid;
     grid-template-rows: min-content auto min-content;
@@ -95,9 +104,6 @@ div#wrapper {
         display: flex;
         flex-direction: column;
     }
-    >main[role=main] {
-        background: rgba(255, 255, 255, 0.50);
-    }
     > footer {
         margin-bottom: 0.5em;
         grid-area: footer;
@@ -116,7 +122,8 @@ div#wrapper {
     nav[role=navigation],
     button,
     label,
-    footer {
+    footer,
+    ol#threejs-portfolio {
         font-family: "Raleway", sans-serif;
     }
 }
@@ -152,6 +159,10 @@ main[role=main].container {
     height: 100%;
 }
 
+/**
+ * ==== MAIN CONTENT ====
+ */
+
 form {
     display: flex;
     flex-direction: column;
@@ -178,7 +189,10 @@ button {
     cursor: pointer;
 }
 
-canvas#canvas {
-    position: absolute;
-    z-index: -1;
+a:hover {
+    text-decoration: underline #663399 dashed;
+}
+
+ol#threejs-portfolio {
+    font-size: x-large
 }

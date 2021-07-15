@@ -1,18 +1,22 @@
 import "../css/app.scss"
 
-// Import deps with the dep name or local files with a relative path, for example:
-//
-//     import {Socket} from "phoenix"
-//     import socket from "./socket"
-//
 import "phoenix_html"
 import { Socket } from "phoenix"
-// import topbar from "topbar"
 import { LiveSocket } from "phoenix_live_view"
-import { beginScene } from "./scene"
 
-function sendCoordinatedUniversalTimeOffset(csrfToken, { utcOffset, timezone }) {
-  var xhr = new XMLHttpRequest();
+interface TimePayload {
+  utcOffset: number;
+  timezone: string;
+}
+
+declare global {
+  interface Window {
+    liveSocket: LiveSocket;
+  }
+}
+
+function sendCoordinatedUniversalTimeOffset(csrfToken: string, { utcOffset, timezone }: TimePayload) {
+  const xhr = new XMLHttpRequest();
   xhr.open("POST", '/api/session/set-timezone', true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.setRequestHeader("x-csrf-token", csrfToken);
@@ -21,7 +25,8 @@ function sendCoordinatedUniversalTimeOffset(csrfToken, { utcOffset, timezone }) 
 }
 
 function main() {
-  const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+  const csrfDom = document.querySelector("meta[name='csrf-token']");
+  const csrfToken = csrfDom && csrfDom.getAttribute("content") || "";
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
   const utcOffset = -(new Date().getTimezoneOffset() / 60);
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -44,8 +49,6 @@ function main() {
   // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
   // >> liveSocket.disableLatencySim()
   window.liveSocket = liveSocket
-
-  beginScene()
 }
 
 if (document.readyState === "complete") {

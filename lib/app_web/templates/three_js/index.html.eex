@@ -1,0 +1,8 @@
+<ol id="threejs-portfolio">
+  <li>
+    <%= link "Basic Scene", to: Routes.three_js_path(@conn, :basic_scene) %>
+  </li>
+  <li>
+    <%= link "Fancy Cube", to: Routes.three_js_path(@conn, :fancy_cube) %>
+  </li>
+</ol>

@@ -90,6 +90,14 @@ defmodule AppWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :confirm
   end
 
+  scope "/threejs/", AppWeb do
+    pipe_through [:browser]
+
+    get "/", ThreeJSController, :index
+    get "/basic_scene", ThreeJSController, :basic_scene
+    get "/fancy_cube", ThreeJSController, :fancy_cube
+  end
+
   scope "/api", AppWeb do
     pipe_through [:api]
 

@@ -27,7 +27,7 @@ config :app, AppWeb.Endpoint,
       "--no-hmr",
       "--dist-dir",
       "../priv/static",
-      "js/app.js",
+      "src/*",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

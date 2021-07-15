@@ -32,7 +32,9 @@
       </header>
       <%= @inner_content %>
       <footer>
-      UDIA
+        <%= link "ThreeJS", to: Routes.three_js_path(@conn, :index) %>
+        <hr/>
+        <%= link "UDIA", to: Routes.home_path(@conn, :index) %>
       </footer>
     </div>
   </body>
