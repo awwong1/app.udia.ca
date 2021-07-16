@@ -5,6 +5,9 @@
   <li>
     <%= link "Transform Objects", to: Routes.three_js_path(@conn, :scene, "05") %>
   </li>
+  <li>
+    <%= link "Animations", to: Routes.three_js_path(@conn, :scene, "06") %>
+  </li>
   <!-- Below are not part of the lesson -->
   <li>
     <%= link "Fancy Cube", to: Routes.three_js_path(@conn, :fancy_cube) %>
