@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { handleOnWindowResize } from './util'
 
 function main(): void {
   const canvas = <HTMLCanvasElement | null>document.getElementById("canvas")
@@ -30,13 +31,7 @@ function main(): void {
 
   renderer.render(scene, camera)
 
-  const onWindowResize = () => {
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.render(scene, camera)
-  }
-  window.addEventListener('resize', onWindowResize, false)
+  window.addEventListener('resize', handleOnWindowResize(renderer, camera, scene), false)
 
 }
 

@@ -8,8 +8,8 @@
   "license": "AGPL-3.0-or-later",
   "private": true,
   "scripts": {
-    "deploy": "parcel build --dist-dir ../priv/static src/*",
-    "watch": "parcel watch --no-hmr --dist-dir ../priv/static src/*",
+    "deploy": "parcel build --dist-dir ../priv/static src/*.ts",
+    "watch": "parcel watch --no-hmr --dist-dir ../priv/static src/*.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {

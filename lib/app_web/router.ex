@@ -94,8 +94,8 @@ defmodule AppWeb.Router do
     pipe_through [:browser]
 
     get "/", ThreeJSController, :index
-    get "/basic_scene", ThreeJSController, :basic_scene
     get "/fancy_cube", ThreeJSController, :fancy_cube
+    get "/:id", ThreeJSController, :scene
   end
 
   scope "/api", AppWeb do

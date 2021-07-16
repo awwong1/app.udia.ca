@@ -5,8 +5,9 @@ defmodule AppWeb.ThreeJSController do
     render(conn, "index.html")
   end
 
-  def basic_scene(conn, _params) do
-    render(conn, "basic_scene.html")
+  def scene(conn, %{"id" => id}) do
+    conn = assign(conn, :id, id)
+    render(conn, "scene.html")
   end
 
   def fancy_cube(conn, _params) do
