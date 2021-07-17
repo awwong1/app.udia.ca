@@ -12,5 +12,8 @@ export const handleOnWindowResize = (renderer: THREE.Renderer, camera: THREE.Cam
     camera.right = opts?.right * aspectRatio;
   }
   renderer.setSize(window.innerWidth, window.innerHeight)
+  if (renderer instanceof THREE.WebGLRenderer) {
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  }
   renderer.render(scene, camera)
 }

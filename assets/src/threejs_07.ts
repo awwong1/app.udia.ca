@@ -3,8 +3,9 @@ import { handleOnWindowResize } from './util'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 /**
- * Lesson 7: Cameras
+ * Lesson 7 & 8: Cameras; Full Screen & Resizing
  * https://threejs-journey.xyz/lessons/7
+ * https://threejs-journey.xyz/lessons/8
  * @returns void
  */
 const main = () => {
@@ -37,6 +38,7 @@ const main = () => {
   const renderer = new THREE.WebGLRenderer({ alpha: true, canvas })
   renderer.setClearColor(0xffffff, 0)
   renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   window.addEventListener('resize', handleOnWindowResize(renderer, camera, scene, { left: -1, right: 1 }), false)
 
   // controls.update()
@@ -49,6 +51,15 @@ const main = () => {
     window.requestAnimationFrame(tick)
   }
   window.requestAnimationFrame(tick)
+
+  // full screen effect on doubleclick
+  window.addEventListener('dblclick', () => {
+    if (!document.fullscreenElement) {
+      canvas.requestFullscreen()
+    } else {
+      document.exitFullscreen()
+    }
+  })
 }
 
 if (document.readyState === "complete") {
