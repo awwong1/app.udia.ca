@@ -1,8 +1,16 @@
 import * as THREE from "three"
 
-export const handleOnWindowResize = (renderer: THREE.Renderer, camera: THREE.PerspectiveCamera, scene: THREE.Scene) => () => {
-  camera.aspect = window.innerWidth / window.innerHeight
-  camera.updateProjectionMatrix()
+export const handleOnWindowResize = (renderer: THREE.Renderer, camera: THREE.Camera, scene: THREE.Scene, opts?: any) => (): void => {
+  const aspectRatio = window.innerWidth / window.innerHeight
+  if (camera instanceof THREE.PerspectiveCamera) {
+    camera.aspect = aspectRatio
+    camera.updateProjectionMatrix()
+  }
+  else if (camera instanceof THREE.OrthographicCamera) {
+    // todo, fix
+    camera.left = opts?.left * aspectRatio;
+    camera.right = opts?.right * aspectRatio;
+  }
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.render(scene, camera)
 }

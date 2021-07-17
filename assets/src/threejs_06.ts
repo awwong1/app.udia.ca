@@ -3,8 +3,8 @@ import gsap from 'gsap'
 import { handleOnWindowResize } from './util'
 
 /**
- * Lesson 5: Transform Objects
- * https://threejs-journey.xyz/lessons/5
+ * Lesson 6: Animations
+ * https://threejs-journey.xyz/lessons/6
  * @returns void
  */
 const main = () => {
