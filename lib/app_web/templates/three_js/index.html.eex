@@ -14,6 +14,9 @@
   <li>
     <%= link "Geometries", to: Routes.three_js_path(@conn, :scene, "09") %>
   </li>
+  <li>
+    <%= link "Debug UI", to: Routes.three_js_path(@conn, :scene, "10") %>
+  </li>
   <!-- Below are not part of the lesson -->
   <li>
     <%= link "Fancy Cube", to: Routes.three_js_path(@conn, :fancy_cube) %>
