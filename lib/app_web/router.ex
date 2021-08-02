@@ -90,6 +90,10 @@ defmodule AppWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :confirm
   end
 
+  scope "/stripe/webhooks" do
+    post "/", WebhooksController, :webhooks
+  end
+
   scope "/threejs/", AppWeb do
     pipe_through [:browser]
 
