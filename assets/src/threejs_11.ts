@@ -29,16 +29,16 @@ const main = () => {
   // loadingManager.onProgress = () => { console.log('loading progressing') }
   // loadingManager.onError = () => { console.log('error occurred') }
   const textureLoader = new THREE.TextureLoader(loadingManager)
-  // const colorTexture = textureLoader.load('/threejs/11/checkerboard-1024x1024.png')
-  // const colorTexture = textureLoader.load('/threejs/11/checkerboard-8x8.png')
-  const colorTexture = textureLoader.load('/threejs/11/minecraft.png')
-  // const colorTexture = textureLoader.load('/threejs/11/color.jpg')
-  const alphaTexture = textureLoader.load('/threejs/11/alpha.jpg')
-  const heightTexture = textureLoader.load('/threejs/11/height.png')
-  const normalTexture = textureLoader.load('/threejs/11/normal.jpg')
-  const ambientOcclusionTexture = textureLoader.load('/threejs/11/ambientOcclusion.jpg')
-  const metalnessTexture = textureLoader.load('/threejs/11/metalness.jpg')
-  const roughnessTexture = textureLoader.load('/threejs/11/roughness.jpg')
+  // const colorTexture = textureLoader.load('/threejs/door/checkerboard-1024x1024.png')
+  // const colorTexture = textureLoader.load('/threejs/door/checkerboard-8x8.png')
+  const colorTexture = textureLoader.load('/threejs/door/minecraft.png')
+  // const colorTexture = textureLoader.load('/threejs/door/color.jpg')
+  const alphaTexture = textureLoader.load('/threejs/door/alpha.jpg')
+  const heightTexture = textureLoader.load('/threejs/door/height.png')
+  const normalTexture = textureLoader.load('/threejs/door/normal.jpg')
+  const ambientOcclusionTexture = textureLoader.load('/threejs/door/ambientOcclusion.jpg')
+  const metalnessTexture = textureLoader.load('/threejs/door/metalness.jpg')
+  const roughnessTexture = textureLoader.load('/threejs/door/roughness.jpg')
 
   // colorTexture.repeat.x = 2
   // colorTexture.repeat.y = 3
