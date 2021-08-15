@@ -28,6 +28,7 @@ config :app, AppWeb.Endpoint,
       "--dist-dir",
       "../priv/static",
       "src/*.ts",
+      "src/threejs/*.ts",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

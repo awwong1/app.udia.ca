@@ -1,1 +1,1 @@
-<script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/threejs_" <> @id <> ".js") %>"></script>
+<script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/threejs/threejs_" <> @id <> ".js") %>"></script>

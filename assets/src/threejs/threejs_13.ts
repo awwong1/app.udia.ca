@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { handleOnWindowResize } from './util'
+import { handleOnWindowResize } from '../util'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 /**

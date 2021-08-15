@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { handleOnWindowResize } from './util'
+import { handleOnWindowResize } from '../util'
 
 function main(): void {
   const canvas = <HTMLCanvasElement | null>document.getElementById("canvas")

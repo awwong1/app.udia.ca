@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
-import { handleOnWindowResize } from './util'
+import { handleOnWindowResize } from '../util'
 
 /**
  * Lesson 6: Animations

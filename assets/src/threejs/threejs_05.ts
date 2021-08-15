@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { handleOnWindowResize } from './util'
+import { handleOnWindowResize } from '../util'
 
 /**
  * Lesson 5: Transform Objects
