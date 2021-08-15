@@ -3,8 +3,8 @@ import { handleOnWindowResize } from './util'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 /**
- * Lesson 10: Textures
- * https://threejs-journey.xyz/lessons/11
+ * Lesson 12: Materials
+ * https://threejs-journey.xyz/lessons/12
  * 
  * Physically Based Rendering (PBR): follow real-life directions to get realistic results
  * https://marmoset.co/posts/basic-theory-of-physically-based-rendering/

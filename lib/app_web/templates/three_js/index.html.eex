@@ -23,6 +23,9 @@
   <li>
     <%= link "Materials", to: Routes.three_js_path(@conn, :scene, "12") %>
   </li>
+  <li>
+    <%= link "3D Text", to: Routes.three_js_path(@conn, :scene, "13") %>
+  </li>
   <!-- Below are not part of the lesson -->
   <li>
     <%= link "Fancy Cube", to: Routes.three_js_path(@conn, :fancy_cube) %>
