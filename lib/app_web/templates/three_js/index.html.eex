@@ -32,6 +32,9 @@
   <li>
     <%= link "Shadows", to: Routes.three_js_path(@conn, :scene, "15") %>
   </li>
+  <li>
+    <%= link "Baked Shadow", to: Routes.three_js_path(@conn, :scene, "02") %>
+  </li>
   <!-- Below are not part of the lesson -->
   <li>
     <%= link "Fancy Cube", to: Routes.three_js_path(@conn, :fancy_cube) %>
